@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@300&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.2.1/dist/chart.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="Title">
+        <label>
+
+
+            Navsteva.NaPicu
+        </label>
+        <label>
+
+            <a href="/logout" id="exit">Jít do číče</a>
+        </label>
+    </div>
+
+
+
+    <main>
+
+        <div class="graf">
+
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+    </main>
+</body>
+
+</html>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+    $(function () {
+
+        $.ajax({
+            type: 'post',
+            url: '/api/getdata',
+            success: function (data) {
+                myChart(data);
+            }
+        })
+    })
+
+
+
+
+
+
+
+
+
+    function myChart(data) {
+
+        const count = [];
+        const date = [];
+        for (var i = 0; i < data.length; i++) {
+            count.push(data[i].count)
+            date.push(data[i].date)
+        }
+        
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: date,
+                datasets: [
+                    {
+                        label: "Týpků",
+                        data: count,
+                        fill: false,
+                        borderColor: "#c0392b",
+                        backgroundColor: "#c0392b",
+                        borderWidth: 1,
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+            }
+        });
+    }
+
+
+</script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Source Code Pro', monospace;
+        ;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 0 auto;
+
+    }
+
+    body {
+        background: #031321;
+    }
+
+    #exit {
+        color: red;
+        text-decoration: none;
+        margin-left: 5%;
+    }
+
+    .graf {
+        width: 80%;
+        height: 70vh;
+        min-height: 500px;
+        margin: 0 auto;
+        padding: 50px 0;
+    }
+
+    .Title {
+        padding: .7%;
+        font-size: 1.56rem;
+        font-weight: bold;
+        color: white;
+    }
+</style>

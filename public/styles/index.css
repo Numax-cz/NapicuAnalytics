@@ -1,0 +1,53 @@
+*{
+    font-family: 'Source Code Pro', monospace;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-weight: 900;
+}
+body{
+    display: table;
+    z-index: 1;
+    height: 100vh;
+    min-height: 500px;
+    width: 100%;
+    background-color: #2d3436;
+}
+#form{
+    display: flex;
+    vertical-align: middle;
+    padding-top: 17%;
+    padding-bottom: 100px;
+    justify-content: center;
+}
+.label{
+    color: rgba(255, 255, 255, 0.76);
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+input{
+    border: none;
+    outline: none;
+    font-size: 1.5rem;
+    padding: 2%;
+}
+button{
+    outline: none;
+    border: none;
+    font-size: 1.2rem;
+    padding: 2%;
+    margin-top: 12%;
+    background-color: #2ecc71;
+    cursor: pointer;
+    border-radius: 7px;
+
+
+
+
+}
+button:hover{
+    background-color: #27ae60;
+
+    transition: background-color .15s ease-in-out;
+
+}
