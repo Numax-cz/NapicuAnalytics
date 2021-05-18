@@ -27,11 +27,11 @@ var job = new cron('0 0 * * *', function () {
 }, null, true, 'Europe/Prague');
 
 
-
+Update();
 
 function Update() {
     const date = datum(new Date(), "yyyy-mm-dd");
-    connection.query(`INSERT INTO analytics (count, date) VALUES ('${count}', '${date}')`);
+    connection.query(`INSERT INTO analytics (counter, date) VALUES ('${count}', '${date}')`);
     console.log("update");
     count = 0;
     ips = [];
@@ -98,8 +98,5 @@ app.use(express.static(__dirname + '/public'));
 app.listen(process.env.PORT, () => {
     console.log("Aplikace běží na portu " + process.env.PORT);
 });
-
-
-
 
 
